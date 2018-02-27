@@ -31,11 +31,12 @@ unicode_escape = ${ "\\" ~ "u" ~ hex_digit{1,4} }
 
 newline = _{ "\n" | "\r\n" }
 whitespace = _{ " " | "\t" | newline }
-pragma = @{ "#pragma" ~ (!newline ~ any)* }
-directive = @{ "#" ~ (!newline ~ any)* }
+path_spec = @{ (!">" ~!"\"" ~ any)+ }
+include_directive = !{ "#" ~ "include" ~ (("<" ~ path_spec ~ ">") | ("\"" ~ path_spec ~ "\"")) }
+other_directive = @{ "#" ~ (!newline ~ any)* }
 block_comment = @{ "/*" ~ (!"*/" ~ any)* ~ "*/" }
 line_comment = @{ "//" ~ (!newline ~ any)* }
-comment = { block_comment | line_comment | pragma | directive }
+comment = ${ block_comment | line_comment | include_directive | other_directive}
 
 
 identifier = @{ (alpha | "_") ~ ("_" | alpha | digit)* }
@@ -73,7 +74,7 @@ float_suffix = ${ ("f" | "F" | "d" | "D") }
 // From Building Block Core Data Types:
 ///////////////////////////////////////////////////////////////////////////////
 // (1)
-specification = { soi ~ definition+ ~ eoi}
+specification = { soi ~ definition* ~ eoi}
 // (2) (71) (98) (111) (184) (208)
 definition = {
     module_dcl ~ ";"
