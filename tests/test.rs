@@ -58,5 +58,5 @@ fn example() {
 
     file.read_to_string(&mut data).unwrap();
 
-    IdlParser::parse_str(Rule::specification, &data).unwrap_or_else(|e| panic!("{}", e));
+    IdlParser::parse(Rule::specification, &data).unwrap_or_else(|e| panic!("{}", e));
 }
