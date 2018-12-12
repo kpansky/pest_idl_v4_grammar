@@ -202,10 +202,16 @@ base_type_spec = {
 }
 // (24)
 floating_pt_type = {
-    "float"
-    | "double"
-    | "long" ~ "double"
+    float
+    | double
+    | long_double
 }
+float = { "float" }
+
+double = { "double" }
+
+long_double = { "long" ~ "double" }
+
 // (25)
 integer_type = {
     signed_int
