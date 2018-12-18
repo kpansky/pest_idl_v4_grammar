@@ -96,7 +96,7 @@ definition = {
     | annotation_dcl ~ ";"
 }
 // (3)
-module_dcl = { "module" ~ identifier ~ "{" ~ definition+ ~ "}" }
+module_dcl = { "module" ~ identifier ~ "{" ~ definition* ~ "}" }
 // (4)
 scoped_name = { "::"? ~ identifier ~ ("::" ~ identifier)* }
 // (5)
