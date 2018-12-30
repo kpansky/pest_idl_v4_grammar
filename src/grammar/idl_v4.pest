@@ -52,13 +52,15 @@ integer_literal = ${
 decimal_integer_literal = @{ digit+ }
 octal_integer_literal = @{ "0" ~ octal_digit+ }
 hex_integer_literal = @{ ("0x" | "0X") ~ hex_digit+ }
-fixed_pt_literal = @{ floating_pt_literal }
-floating_pt_literal = @{
-    digit+ ~ "." ~ digit+ ~ exponent? ~ float_suffix?
-    | "." ~ digit+ ~ exponent? ~ float_suffix?
-    | digit+ ~ exponent ~ float_suffix?
-    | digit+ ~ float_suffix
+fixed_pt_literal = ${ floating_pt_literal }
+floating_pt_literal = ${
+    integral_part ~ "." ~ fractional_part ~ exponent? ~ float_suffix?
+    | "." ~ fractional_part ~ exponent? ~ float_suffix?
+    | integral_part ~ exponent ~ float_suffix?
+    | integral_part ~ float_suffix
 }
+integral_part =  @{ digit+ }
+fractional_part =  @{ digit+ }
 exponent = ${ ("e" | "E") ~ ("+" | "-")? ~ digit+ }
 float_suffix = ${ ("f" | "F" | "d" | "D") }
 
