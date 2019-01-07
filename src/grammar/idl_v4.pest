@@ -135,7 +135,7 @@ lshift_expr = {
     "<<" ~ const_expr
 }
 rshift_expr = {
-    "<<" ~ const_expr
+    ">>" ~ const_expr
 }
 // (12)
 add_expr = {
