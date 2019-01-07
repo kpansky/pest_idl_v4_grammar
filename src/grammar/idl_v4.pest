@@ -117,7 +117,7 @@ const_type = {
     | scoped_name
 }
 // (7)
-const_expr = { unary_expr ~ (or_expr | xor_expr | and_expr | shift_expr | add_expr | mult_expr)? }
+const_expr = { unary_expr ~ (or_expr | xor_expr | and_expr | lshift_expr | rshift_expr | add_expr | sub_expr | mul_expr | div_expr | mod_expr)? }
 // (8)
 or_expr = {
     "|" ~ const_expr
@@ -131,16 +131,28 @@ and_expr = {
     "&" ~ const_expr
 }
 // (11)
-shift_expr = {
-    ("<<" | ">>") ~ const_expr
+lshift_expr = {
+    "<<" ~ const_expr
+}
+rshift_expr = {
+    "<<" ~ const_expr
 }
 // (12)
 add_expr = {
-    ("+" | "-") ~ const_expr
+    "+" ~ const_expr
+}
+sub_expr = {
+    "-" ~ const_expr
 }
 // (13)
 mult_expr = {
-    ("*" | "/" | "%") ~ const_expr
+    "*" ~ const_expr
+}
+div_expr = {
+    "/" ~ const_expr
+}
+mod_expr = {
+    "%" ~ const_expr
 }
 // (14)
 unary_expr = {
