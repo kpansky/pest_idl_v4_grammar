@@ -145,7 +145,7 @@ sub_expr = {
     "-" ~ const_expr
 }
 // (13)
-mult_expr = {
+mul_expr = {
     "*" ~ const_expr
 }
 div_expr = {
